@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  text-analytics-api:
+    build: .
+    container_name: text-analytics-service
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - PORT=8000
+    restart: unless-stopped
