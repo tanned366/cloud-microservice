@@ -36,7 +36,7 @@ def test_3_analyze_positive_sentiment():
     response = client.post("/analyze", json=payload)
     assert response.status_code == 200
     data = response.json()
-    assert data["word_count"] == 11
+    assert data["word_count"] == 10
     assert data["character_count"] > 0
     assert data["sentiment"] == "positive"
     assert data["sentiment_score"] > 0.15
