@@ -10,33 +10,6 @@ A production-ready, containerized microservice for real-time text sentiment clas
 
 ---
 
-## 📐 Architecture Overview
-
-```mermaid
-flowchart TD
-    Client["🌐 Client / Browser / API Consumer"] -->|HTTPS Requests| CloudService["☁️ Cloud Web Host (Render / AWS)"]
-    CloudService -->|Routes Traffic| Docker["🐳 Docker Container (Port 8000)"]
-    
-    subgraph Container["Dockerized Runtime Environment"]
-        Docker --> ASGI["⚡ Uvicorn ASGI Server"]
-        ASGI --> App["⚙️ FastAPI Microservice Core"]
-        App --> Endpoints["📡 Endpoints: /health, /analyze, /transform, /docs"]
-        App --> Logic["🧠 Sentiment Analysis & Metrics Engine"]
-    end
-
-    GitHub["🐙 GitHub Repository"] -->|On Push / PR| GHActions["🤖 GitHub Actions CI/CD"]
-    GHActions -->|Executes| Tests["🧪 Pytest (8 Automated Test Cases)"]
-    Tests -->|Build & Verify| DockerBuild["📦 Docker Image Build Test"]
-    DockerBuild -->|Deploy Webhook| CloudService
-```
-
-### Flow Breakdown:
-1. **Client Request**: Clients interact via RESTful JSON APIs or Swagger UI at `/docs`.
-2. **Cloud Host**: Ingress HTTPS traffic is routed to our containerized service.
-3. **Container**: Lightweight `python:3.11-slim` container hosting the FastAPI app.
-4. **CI/CD Pipeline**: GitHub Actions validates every commit by running 8 automated unit tests. Pushes with failing tests are automatically flagged and blocked.
-
----
 
 ## ✨ Features & Endpoints
 

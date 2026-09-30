@@ -22,3 +22,10 @@ test-results.xml
 *.swo
 .DS_Store
 Thumbs.db
+
+# Local teaching notes and private docs (not pushed)
+THINGS_TO_TEACH.md
+Graded Assessment.pdf
+*.pptx
+
+
